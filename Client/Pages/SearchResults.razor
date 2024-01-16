@@ -1,0 +1,133 @@
+﻿@page "/search-results"
+
+<div class="search-results-container">
+    <h1 class="search-results-title">Search Results</h1>
+
+    <!-- Filter and Sorting Options -->
+    <div class="filter-options">
+        <label>Sort by:</label>
+        <select>
+            <option>Relevance</option>
+            <option>Name</option>
+            <option>Location</option>
+        </select>
+    </div>
+
+    <div class="search-results-list">
+        @* @foreach (var greenSpace in greenSpaces)
+        {
+        <div class="search-result">
+        <h2>@greenSpace.Name</h2>
+        <p class="green-space-location">@greenSpace.Location</p>
+        <p class="green-space-description">@greenSpace.Description</p>
+        <a href="#" @onclick="() => ViewDetails(greenSpace)">View Details</a>
+        </div>
+        } *@
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+        <a href="#" class="pagination-link">1</a>
+        <a href="#" class="pagination-link">2</a>
+        <a href="#" class="pagination-link">3</a>
+    </div>
+</div>
+
+@* @code {
+    private List<GreenSpace> greenSpaces;
+
+    protected override void OnInitialized()
+    {
+        // Fetch search results from your data source and populate the greenSpaces list.
+        // You can use a service or API call to get the data.
+        // Example:
+        // greenSpaces = GreenSpaceService.GetSearchResults();
+    }
+
+    private void ViewDetails(GreenSpace greenSpace)
+    {
+        // Redirect to the details page for the selected green space.
+        // You can navigate to the details page using Blazor navigation.
+        // Example:
+        // NavigationManager.NavigateTo($"/details/{greenSpace.Id}");
+    }
+} *@
+
+<style>
+    /* Add your CSS styles for Search Results Page here */
+    .search-results-container {
+        padding: 20px;
+    }
+
+    .search-results-title {
+        color: #606c38;
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .filter-options {
+        margin-bottom: 20px;
+    }
+
+        .filter-options label {
+            margin-right: 10px;
+            color: #606c38;
+        }
+
+        .filter-options select {
+            padding: 5px;
+            border: 1px solid #606c38;
+            border-radius: 5px;
+            background-color: #fefae0;
+            color: #283618;
+        }
+
+    .search-results-list {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .search-result {
+        width: 300px;
+        border: 1px solid #606c38;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 5px;
+    }
+
+    .green-space-location {
+        color: #606c38;
+        font-size: 1rem;
+    }
+
+    .green-space-description {
+        color: #606c38;
+        font-size: 1rem;
+    }
+
+    a {
+        color: #283618;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    /* Pagination Styles */
+    .pagination {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .pagination-link {
+        margin: 0 5px;
+        padding: 5px 10px;
+        background-color: #606c38;
+        color: #fefae0;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+
+        .pagination-link:hover {
+            background-color: #283618;
+        }
+</style>

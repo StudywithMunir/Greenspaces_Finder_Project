@@ -1,0 +1,160 @@
+﻿@page "/green-space-details"
+
+<div class="details-container">
+
+    <h1 class="details-title">Green Space Details</h1>
+
+    <div class="details-content">
+        <!-- Park Name -->
+        <div class="detail-item">
+            <h3>Park Name:</h3>
+            <p>Park XYZ</p>
+        </div>
+
+        <!-- Location -->
+        <div class="detail-item">
+            <h3>Location:</h3>
+            <p>123 Main Street, City, State</p>
+        </div>
+
+        <!-- Hours of Operation -->
+        <div class="detail-item">
+            <h3>Hours of Operation:</h3>
+            <p>Monday-Friday: 8:00 AM - 6:00 PM</p>
+        </div>
+
+        <!-- Amenities -->
+        <div class="detail-item">
+            <h3>Amenities:</h3>
+            <p>Picnic areas, Playground, Walking trails</p>
+        </div>
+
+        <!-- Rules -->
+        <div class="detail-item">
+            <h3>Rules:</h3>
+            <p>No littering, No pets, No alcohol</p>
+        </div>
+    </div>
+
+    <h2 class="ratings-title">User Ratings and Reviews</h2>
+
+    <!-- User Reviews -->
+    <div class="user-reviews">
+        <!-- Review 1 -->
+        <div class="review">
+            <h3>User 1</h3>
+            <p>Great place to relax and enjoy nature. The park is well-maintained, and the staff is friendly.</p>
+            <div class="rating">4.5 stars</div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="review">
+            <h3>User 2</h3>
+            <p>Nice park with beautiful surroundings. Clean and safe for kids to play.</p>
+            <div class="rating">4.0 stars</div>
+        </div>
+    </div>
+
+    <!-- Leave Review Section -->
+    <div class="leave-review">
+        <h3>Leave a Review</h3>
+        <!-- Add form for leaving a review -->
+        <!-- Name, Rating, Comment, Submit button, etc. -->
+    </div>
+
+    <!-- Back Button -->
+    <a href="/search-results" class="back-button">Back to Search Results</a>
+</div>
+
+@code {
+    // C# code for fetching and displaying park details
+    // You can bind these details to the HTML elements
+
+    // Sample data for park details
+    private string ParkName = "Park XYZ";
+    private string Location = "123 Main Street, City, State";
+    private string HoursOfOperation = "Monday-Friday: 8:00 AM - 6:00 PM";
+    private string Amenities = "Picnic areas, Playground, Walking trails";
+    private string Rules = "No littering, No pets, No alcohol";
+
+    // Sample user reviews and ratings
+    private List<Review> UserReviews = new List<Review>
+    {
+        new Review { UserName = "User 1", Comment = "Great place to relax and enjoy nature. The park is well-maintained, and the staff is friendly.", Rating = 4.5 },
+        new Review { UserName = "User 2", Comment = "Nice park with beautiful surroundings. Clean and safe for kids to play.", Rating = 4.0 },
+    };
+
+    // C# class to represent a user review
+    public class Review
+    {
+        public string UserName { get; set; }
+        public string Comment { get; set; }
+        public double Rating { get; set; }
+    }
+}
+
+<style>
+    /* Styling for the Green Space Details Page */
+    .details-container {
+        padding: 20px;
+        background-color: #fefae0;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        color: #283618;
+    }
+
+    .details-title {
+        color: #606c38;
+        font-size: 2rem;
+    }
+
+    .detail-item {
+        margin: 10px 0;
+    }
+
+        .detail-item h3 {
+            color: #606c38;
+            font-size: 1.2rem;
+        }
+
+    .ratings-title {
+        color: #606c38;
+        font-size: 1.5rem;
+        margin-top: 20px;
+    }
+
+    .review {
+        background-color: #fefae0;
+        padding: 10px;
+        border: 1px solid #606c38;
+        border-radius: 5px;
+        margin: 10px 0;
+    }
+
+        .review h3 {
+            color: #606c38;
+            font-size: 1.2rem;
+        }
+
+    .rating {
+        color: #606c38;
+    }
+
+    .leave-review {
+        margin-top: 20px;
+    }
+
+    .back-button {
+        display: inline-block;
+        background-color: #606c38;
+        color: #fefae0;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 20px;
+    }
+
+        .back-button:hover {
+            background-color: #283618;
+        }
+</style>

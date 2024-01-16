@@ -1,0 +1,55 @@
+﻿<!-- HamBurger Icon -->
+<div class="bars" id="nav-action">
+    <span class="bar"></span>
+</div>
+
+<link rel="stylesheet" type="text/css" href="./css/NavStyleSheet.css">
+
+<!-- Navbar Links -->
+<nav id="nav">
+    <ul>
+        <AuthorizeView>
+            
+            <Authorized>
+                <li class="shape-circle circle-five">
+                    <NavLink class="nav-link" href="/identity/account/logout" Match="NavLinkMatch.All">
+                        Logout @context.User.Identity.Name
+                    </NavLink>
+                </li>
+                
+                <li class="shape-circle circle-three">
+                    <NavLink href="/green-space-details">Green Space Details</NavLink>
+                </li>
+                <li class="shape-circle circle-five">
+                    <NavLink href="/about-us">About Us/Contact</NavLink>
+                </li>
+                
+                <li class="shape-circle circle-one">
+                    <NavLink href="/">Home</NavLink>
+                </li>
+            </Authorized>
+            <NotAuthorized>
+                <li class="shape-circle circle-five">
+                    <NavLink class="nav-link" href="/identity/account/login" Match="NavLinkMatch.All">
+                        Account
+                    </NavLink>
+                </li>
+            </NotAuthorized>
+        </AuthorizeView>
+    </ul>
+</nav>
+
+<script>
+    // Setting up the Variables
+    var bars = document.getElementById("nav-action");
+    var nav = document.getElementById("nav");
+
+    // Setting up the listener
+    bars.addEventListener("click", barClicked, false);
+
+    // Setting up the clicked Effect
+    function barClicked() {
+        bars.classList.toggle('active');
+        nav.classList.toggle('visible');
+    }
+</script>

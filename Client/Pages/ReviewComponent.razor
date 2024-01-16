@@ -1,0 +1,59 @@
+﻿@page "/review"﻿
+
+@using Greenspaces_Finder.Shared
+@inject HttpClient Http
+@inject IJSRuntime JSRuntime
+
+<h3>Review Form</h3>
+
+<EditForm Model="@review" OnValidSubmit="@HandleSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="userId">User ID:</label>
+        <InputNumber id="userId" @bind-Value="review.UserId" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="greenSpaceId">Green Space ID:</label>
+        <InputNumber id="greenSpaceId" @bind-Value="review.GreenSpaceId" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="rating">Rating:</label>
+        <InputNumber id="rating" @bind-Value="review.Rating" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="comment">Comment:</label>
+        <InputText id="comment" @bind-Value="review.Comment" class="form-control" />
+    </div>
+
+@*    <div class="form-group">
+    <label for="dateTime">Date/Time:</label>
+    <InputDate @bind-Value="review.DateTime.Date" class="form-control" />
+    <InputTime @bind-Value="review.DateTime.TimeOfDay" class="form-control" />
+</div> *@
+
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</EditForm>
+
+@code {
+    private Review review = new Review();
+
+    private async Task HandleSubmit()
+    {
+        var response = await Http.PostAsJsonAsync("api/review", review);
+
+        if (response.IsSuccessStatusCode)
+        {
+            await JSRuntime.InvokeVoidAsync("alert", "Data saved successfully!");
+        }
+        else
+        {
+            await JSRuntime.InvokeVoidAsync("alert", "Error saving data");
+        }
+    }
+}

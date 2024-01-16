@@ -1,0 +1,103 @@
+﻿@page "/mobile-app-interface"
+
+<div class="mobile-app-container">
+    <h1 class="mobile-app-title">Green Spaces Finder Mobile App</h1>
+
+    <div class="mobile-app-features">
+        <h2 class="features-title">Key Features:</h2>
+        <ul>
+            <li>Real-time navigation to selected green spaces.</li>
+            <li>Push notifications for park updates and events.</li>
+            <li>User-friendly and mobile-responsive design.</li>
+        </ul>
+    </div>
+
+    <div class="download-links">
+        <h2 class="download-title">Download the App:</h2>
+        <div class="download-buttons">
+            <a href="#" class="app-store-link">
+                <img src="images/App.png" alt="Download on the App Store" />
+            </a>
+            <a href="#" class="play-store-link">
+                <img src="images/play.png" alt="Get it on Google Play" />
+            </a>
+        </div>
+    </div>
+
+    <div class="web-version-link">
+        <p>Or use the web-based version to explore green spaces from your browser.</p>
+        <a href="/search-results" class="web-version-button">Explore Web Version</a>
+    </div>
+</div>
+
+<style>
+    /* Styling for the Mobile App Interface Page */
+    .mobile-app-container {
+        padding: 20px;
+        background-color: #fefae0;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        color: #283618;
+    }
+
+    .mobile-app-title {
+        color: #606c38;
+        font-size: 2rem;
+    }
+
+    .features-title {
+        color: #606c38;
+        font-size: 1.5rem;
+        margin-top: 20px;
+    }
+
+    .download-title {
+        color: #606c38;
+        font-size: 1.5rem;
+        margin-top: 20px;
+    }
+
+    .download-links {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .download-buttons {
+        display: flex;
+        gap: 20px;
+    }
+
+    .app-store-link,
+    .play-store-link {
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: 1px solid #606c38;
+        background-color: #606c38;
+        color: #fefae0;
+    }
+
+        .app-store-link:hover,
+        .play-store-link:hover {
+            background-color: #283618;
+        }
+
+    .web-version-link {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .web-version-button {
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: 1px solid #606c38;
+        background-color: #606c38;
+        color: #fefae0;
+    }
+
+        .web-version-button:hover {
+            background-color: #283618;
+        }
+</style>
