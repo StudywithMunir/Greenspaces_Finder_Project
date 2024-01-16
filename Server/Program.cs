@@ -1,3 +1,4 @@
+using Blazored.LocalStorage;
 using Greenspaces_Finder.Server.Data;
 using Greenspaces_Finder.Server.Models;
 using Microsoft.AspNetCore.Authentication;
@@ -33,6 +34,10 @@ builder.Services.AddControllers().AddControllersAsServices();
 
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddBlazoredLocalStorage();
+builder.Services.AddGeolocationServices();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -61,6 +66,9 @@ app.UseRouting();
 
 app.UseIdentityServer();
 app.UseAuthorization();
+
+
+
 
 
 app.MapRazorPages();

@@ -1,0 +1,66 @@
+﻿@* @page "/parks"
+
+
+@inject ILocalStorageService localStorage
+@inject IGeolocationService geolocationService
+
+<h3>Nearby Parks</h3>
+
+@if (loading)
+{
+    <p>Loading...</p>
+}
+else if (error != null)
+{
+    <p>Error: @error</p>
+}
+else if (parks != null && parks.Any())
+{
+    <ul>
+        @foreach (var park in parks)
+        {
+            <li>@park.Name - Latitude: @park.Latitude, Longitude: @park.Longitude</li>
+        }
+    </ul>
+}
+else
+{
+    <p>No parks found nearby.</p>
+}
+
+@code {
+    private List<Park> parks;
+    private bool loading = true;
+    private string error;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var userLocation = await geolocationService.GetLocationAsync();
+
+            // For simplicity, you can mock the nearby parks. In a real application, you would fetch this data from a backend service.
+            parks = new List<Park>
+            {
+                new Park { Name = "City Park", Latitude = userLocation.Latitude + 0.01, Longitude = userLocation.Longitude + 0.01 },
+                new Park { Name = "Central Park", Latitude = userLocation.Latitude - 0.02, Longitude = userLocation.Longitude - 0.02 },
+                // Add more parks as needed
+            };
+
+            loading = false;
+        }
+        catch (GeolocationException ex)
+        {
+            error = ex.Message;
+            loading = false;
+        }
+    }
+
+    private class Park
+    {
+        public string Name { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+    }
+}
+ *@

@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Greenspaces_Finder.Server", "Server\Greenspaces_Finder.Server.csproj", "{AD6AC6DC-1484-48EF-8B32-997EEC3DFCBF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Greenspaces_Finder.Server", "Server\Greenspaces_Finder.Server.csproj", "{AD6AC6DC-1484-48EF-8B32-997EEC3DFCBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Greenspaces_Finder.Client", "Client\Greenspaces_Finder.Client.csproj", "{E0BD8802-21B7-4AA9-8DC7-BD3A97543B18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Greenspaces_Finder.Client", "Client\Greenspaces_Finder.Client.csproj", "{E0BD8802-21B7-4AA9-8DC7-BD3A97543B18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Greenspaces_Finder.Shared", "Shared\Greenspaces_Finder.Shared.csproj", "{3C59F0C1-E90D-409B-B6FB-8F1E3DB4009F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Greenspaces_Finder.Shared", "Shared\Greenspaces_Finder.Shared.csproj", "{3C59F0C1-E90D-409B-B6FB-8F1E3DB4009F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
