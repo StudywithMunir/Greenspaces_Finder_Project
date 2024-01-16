@@ -2,119 +2,111 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Greenspaces_Finder.Shared;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Greenspaces_Finder.Server.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
-   
-        public class ReviewController : ControllerBase
+    public class ReviewController : ControllerBase
+    {
+        private readonly AppDbContext _appDbContext;
+
+        public ReviewController(AppDbContext appDbContext)
         {
-            // Database context for handling reviews
-            private readonly AppDbContext _context;
+            _appDbContext = appDbContext;
+        }
 
-            // Constructor to inject the database context
-            public ReviewController(AppDbContext context)
+        // GET: api/v1/Review
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Review>>> GetReviews()
+        {
+            return await _appDbContext.Reviews.ToListAsync();
+        }
+
+        // GET: api/v1/Review/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Review>> GetReview(int id)
+        {
+            var review = await _appDbContext.Reviews.FindAsync(id);
+
+            if (review == null)
             {
-                _context = context;
+                return NotFound();
             }
 
-            // GET api/<ReviewController>
-            [HttpGet]
-            public async Task<ActionResult<IEnumerable<Review>>> GetReviews()
+            return review;
+        }
+
+        // POST: api/v1/Review
+        [HttpPost]
+        public IActionResult PostReview([FromBody] Review review)
+        {
+            try
             {
-                // Retrieve all reviews asynchronously from the database
-                return await _context.Reviews.ToListAsync();
+                _appDbContext.Reviews.Add(review);
+                _appDbContext.SaveChanges();
+
+                return Ok("Message: Save successfully");
             }
-
-            // GET api/<ReviewController>/id
-            [HttpGet("{id}")]
-            public async Task<ActionResult<Review>> GetReview(int id)
+            catch
             {
-                // Find a review by its ID in the database
-                var review = await _context.Reviews.FindAsync(id);
-
-                // Check if the review with the specified ID exists
-                if (review == null)
-                {
-                    return NotFound(); // Return a 404 Not Found response if the review is not found
-                }
-
-                return review; // Return the found review
-            }
-
-            // POST api/<ReviewController>
-            [HttpPost]
-            public async Task<ActionResult<Review>> PostReview(Review review)
-            {
-                // Add a new review to the database
-                _context.Reviews.Add(review);
-                await _context.SaveChangesAsync();
-
-                // Return a 201 Created response with the details of the newly created review
-                return CreatedAtAction(nameof(GetReview), new { id = review.ReviewId }, review);
-            }
-
-            // PUT api/<ReviewController>/id
-            [HttpPut("{id}")]
-            public async Task<IActionResult> PutReview(int id, Review review)
-            {
-                // Check if the provided ID matches the review's ID
-                if (id != review.ReviewId)
-                {
-                    return BadRequest(); // Return a 400 Bad Request response if the IDs do not match
-                }
-
-                // Mark the review entity as modified and update it in the database
-                _context.Entry(review).State = EntityState.Modified;
-
-                try
-                {
-                    await _context.SaveChangesAsync(); // Save changes to the database
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    // Handle concurrency conflicts
-                    if (!ReviewExists(id))
-                    {
-                        return NotFound(); // Return a 404 Not Found response if the review is not found
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-
-                return NoContent(); // Return a 204 No Content response on successful update
-            }
-
-            // DELETE api/<ReviewController>/id
-            [HttpDelete("{id}")]
-            public async Task<IActionResult> DeleteReview(int id)
-            {
-                // Find a review by its ID in the database
-                var review = await _context.Reviews.FindAsync(id);
-
-                // Check if the review with the specified ID exists
-                if (review == null)
-                {
-                    return NotFound(); // Return a 404 Not Found response if the review is not found
-                }
-
-                // Remove the review from the database and save changes
-                _context.Reviews.Remove(review);
-                await _context.SaveChangesAsync();
-
-                return NoContent(); // Return a 204 No Content response on successful deletion
-            }
-
-            // Helper method to check if a review with a given ID exists
-            private bool ReviewExists(int id)
-            {
-                return _context.Reviews.Any(e => e.ReviewId == id);
+                return BadRequest();
             }
         }
-    }
 
+        // PUT: api/v1/Review/5
+        [HttpPut("{id}")]
+        public IActionResult PutReview(int id, [FromBody] Review review)
+        {
+            if (id != review.ReviewId)
+            {
+                return BadRequest();
+            }
+
+            _appDbContext.Entry(review).State = EntityState.Modified;
+
+            try
+            {
+                _appDbContext.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ReviewExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        // DELETE: api/v1/Review/5
+        [HttpDelete("{id}")]
+        public IActionResult DeleteReview(int id)
+        {
+            var review = _appDbContext.Reviews.Find(id);
+
+            if (review == null)
+            {
+                return NotFound();
+            }
+
+            _appDbContext.Reviews.Remove(review);
+            _appDbContext.SaveChanges();
+
+            return NoContent();
+        }
+
+        private bool ReviewExists(int id)
+        {
+            return _appDbContext.Reviews.Any(e => e.ReviewId == id);
+        }
+    }
+}

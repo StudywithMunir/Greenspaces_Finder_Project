@@ -1,6 +1,9 @@
 ﻿<LayoutView Layout="typeof(MainLayout)">
+    <Navigation />
     <div class="landing-container">
-        <Navigation />
+        
+       @*  <NavMenu /> *@
+       
         <div class="landing-content">
             <h1 class="landing-title">Welcome to Green Spaces Finder</h1>
             <p class="app-description">Discover the beauty of nature around you.</p>
@@ -17,7 +20,7 @@
             </div>
         </div>
     </div>
-    
+
 </LayoutView>
 
 @code {
@@ -30,8 +33,8 @@
         "images/garden_landing2.jpg",
         "images/pic1.jpg",
         "images/pic3.jpg",
-        
-        
+
+
     };
 
     private void ShowNextImage()

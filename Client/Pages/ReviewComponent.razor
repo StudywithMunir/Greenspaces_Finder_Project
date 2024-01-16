@@ -1,5 +1,4 @@
-﻿@page "/review"﻿
-
+﻿@page "/ReviewForm"
 @using Greenspaces_Finder.Shared
 @inject HttpClient Http
 @inject IJSRuntime JSRuntime
@@ -30,13 +29,6 @@
         <InputText id="comment" @bind-Value="review.Comment" class="form-control" />
     </div>
 
-@*    <div class="form-group">
-    <label for="dateTime">Date/Time:</label>
-    <InputDate @bind-Value="review.DateTime.Date" class="form-control" />
-    <InputTime @bind-Value="review.DateTime.TimeOfDay" class="form-control" />
-</div> *@
-
-
     <button type="submit" class="btn btn-primary">Save</button>
 </EditForm>
 
@@ -45,7 +37,7 @@
 
     private async Task HandleSubmit()
     {
-        var response = await Http.PostAsJsonAsync("api/review", review);
+        var response = await Http.PostAsJsonAsync("api/Review", review);
 
         if (response.IsSuccessStatusCode)
         {
